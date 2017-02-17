@@ -8,7 +8,8 @@ LDFLAGS+=$(MXNET_ROOT)/lib/libmxnet.so
 
 libmxnetwrap.so: c_api_wrap.o
 	g++ -fPIC --shared -o libmxnetwrap.so c_api_wrap.o $(LDFLAGS)
+	ln -s $(GOPATH)/src/github.com/songtianyi/go-mxnet/src/libmxnetwrap.so /usr/lib/libmxnetwrap.so
 c_api_wrap.o: c_api_wrap.cxx
-	g++ -c c_api_wrap.cxx $(CFLAGS)
+	g++ -fPIC -c c_api_wrap.cxx $(CFLAGS)
 clean:
-	rm -f *.o *.so
+	rm -f *.o *.so /usr/lib/libmxnetwrap.so
